@@ -1,0 +1,74 @@
+memo
+
+== Spriteにクリックの動作をつける
+2Dの場合、何も設定しないとRayを飛ばさないので
+当たっているかどうか処理が動かない…
+(3Dの場合はColliderはデフォルトでくっつくみたい)
+
+以下Spriteをクリックしたときに何かする方法メモ
+* カメラに"Physics 2D Raycaster"をつける
+* SpriteにBox Collider 2Dをつける
+* MonoBehaviourクラスの派生クラスにOnMouseDown(), OnMouseUp(), OnMouseDrag()を実装
+
+
+== Spriteをクリックしたら音を鳴らす
+方法はいろいろ。
+
+AudioClip(鳴らしたい音)クラスと、AudioSourceクラス(どうやって鳴らすか)の関係。
+(AudioListenerがカメラに付いているので、音が鳴っている方向も再現できるみたい)
+
+=== その1(SE向け)
+* あらかじめ鳴らしたい音ファイルをImportしておく。
+* "Audio Source"
+  * Spriteにコンポーネント"Audio Source"を追加
+    * これがないと音がならない
+  * Audio SourceのAudioClipに鳴らしたい音を指定する
+  * "Play OnAwake"のチェックを外す。
+    * これが有効だと、シーンをロードしたときになってしまう
+  * ボリュームとかは適切に設定
+* スクリプト(MonoBehaviourクラスの派生クラス)
+  * publicでAudioSourceを持たせる
+  
+    private AudioSource audioSource;
+        .
+        .
+        .
+    void Start() {
+		audioSource = gameObject.GetComponent<AudioSource> ();
+    }
+
+  * audioSource.PlayOneShot (audioSource.clip);で音が鳴る
+
+== その2(BGM向け)
+* あらかじめ鳴らしたい音ファイルをImportしておく。
+  * 3Dの場合は、3D soundの設定を外しておく。
+* シーン(Hierarchy)に鳴らしたい音をドラッグアンドドロップ
+* Inspectorで"Play OnAwake"が設定されていれば、シーンを表示した瞬間に音が鳴り出す。
+* Inspectorで"Loop"にチェックを入れておけば、繰り返し再生される。
+
+
+== その3(BGMのスタート・ストップを制御したい場合)
+* あらかじめ鳴らしたい音ファイルをImportしておく。
+  * 3Dの場合は、3D soundの設定を外しておく。
+* シーン(Hierarchy)に鳴らしたい音をドラッグアンドドロップ
+  * 空のGameObjectにAudioSourceが付いた状態のGameObjectがシーンに生成される
+  * Inspectorで"Play OnAwake"を外しておく。
+  * Inspectorで"Loop"にチェックを入れておく。
+* 他のGameObjectからシーンに追加したAudioSourceを探しておく。
+
+    AudioSource audioSource;
+        .
+        .
+        .
+    void Start() {
+		audioSource = GameObject.Find("bgm").GetComponent<AudioSource>();
+	}
+
+* audioSource.Play()でBGMの再生開始。
+
+	void OnMouseDown() {
+		audioSource.Play ();
+	}
+
+
+
