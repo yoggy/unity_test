@@ -1,10 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Logger.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\..\Desktop\unity_test\01\Assets\test.cs">
     <Files>
-      <File FileName="Assets\Rotate.cs" Line="4" Column="15" />
-      <File FileName="Assets\Logger.cs" Line="8" Column="33" />
-      <File FileName="Assets\IntervalTimer.cs" Line="22" Column="41" />
+      <File FileName="..\..\..\..\Desktop\unity_test\01\Assets\test.cs" Line="13" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

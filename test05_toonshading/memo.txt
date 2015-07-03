@@ -1,0 +1,17 @@
+memo
+====
+プロジェクトを新規作成した場合、Toon Shaderはそのままでは選択できないので、
+次の手順でプロジェクトにToon Shaderを追加する。
+
+  * メニューのAssets->Import Package->Effectsを選択
+  * "Importing Package"のウインドウの中から"ToonShading"の
+    フォルダを選択してimportする。
+
+シーンにモデルを追加した後、モデルのマテリアルに設定されている
+shaderを"Toon"->"Basic/Outline"などに設定。
+
+プロジェクトに含まれるモデルは中野シスターズ公式サイトから
+ダウンロードしたFBXファイルを使用。
+
+  * 中野シスターズ 公式サイト
+    * http://nakasis.com/

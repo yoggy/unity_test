@@ -3,13 +3,13 @@ using System.Collections;
 
 public class IntervalTimer : MonoBehaviour {
 
-	Renderer renderer;
-	Material material;
+	Renderer r;
+	Material m;
 	float t;
 
 	void Start () {
-		renderer = GetComponent<Renderer> ();
-		material = renderer.material;
+		r = GetComponent<Renderer> ();
+		m = r.material;
 		t = 0.0f;
 	}
 	
@@ -17,11 +17,11 @@ public class IntervalTimer : MonoBehaviour {
 		t += Time.deltaTime;
 		if (t > 1.0f) {
 			t = 0;
-			material.color = Color.red;
+			m.color = Color.red;
 			Debug.Log ("Trigger");
-			Logger.Log("time=" + Time.fixedTime);
+			Logger.Log("frameCount=" + Time.frameCount);
 		} else {
-			material.color = Color.white;
+			m.color = Color.white;
 		}
 	}
 }
