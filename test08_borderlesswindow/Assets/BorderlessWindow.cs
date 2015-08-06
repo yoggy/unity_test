@@ -55,7 +55,7 @@ public class BorderlessWindow : MonoBehaviour {
 
 	public void EnableBorderlessWindow() {
 		if (Application.platform == RuntimePlatform.WindowsPlayer) {
-			SetWindowLong (GetForegroundWindow(), GWL_STYLE, 1);
+			SetWindowLong (GetForegroundWindow(), GWL_STYLE, 8); // 8 -> WS_EX_TOPMOST
 			SetWindowPos (GetForegroundWindow (), 0, _window_x, _window_y, _window_w, _window_h, SWP_SHOWWINDOW);
 			_enable = true;
 		}
