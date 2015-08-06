@@ -1,6 +1,10 @@
 ﻿//
 //	see also... https://keijiro.github.io/posts/unity_screen_recording
 //
+//  image sequence -> mp4 movie
+//
+//    $ ffmpeg -r 30 -i img_%04d.png -r 30 -an -vcodec libx264 -b 2000k -pix_fmt yuv420p output.mp4
+//
 using UnityEngine;
 using System.Collections;
 
@@ -43,15 +47,13 @@ public class ParaparaScreenRecorder : MonoBehaviour
 			}
 			else
 			{
-				if (_frameCount > 0)
-				{
-					var name = "Capture/frame" + _frameCount.ToString ("0000") + ".png";
-					Application.CaptureScreenshot (name, superSize);
-				}
-				
+				var name = "Capture/img_" + _frameCount.ToString ("0000") + ".png";
+				Application.CaptureScreenshot (name, superSize);
+
 				_frameCount++;
 
-				if (autoStopRecording == true && autoStopFrame == _frameCount) {
+				if (autoStopRecording == true && autoStopFrame == _frameCount)
+				{
 					StopRecording();
 				}
 
