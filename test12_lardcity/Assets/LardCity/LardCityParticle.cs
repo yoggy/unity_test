@@ -13,10 +13,17 @@ public class LardCityParticle : MonoBehaviour {
 		set {_size_w = value; UpdateSize();}
 	}
 
+	float _grow_speed = 0.1f;
+	public float GrowSpeed {
+		get {return _grow_speed;}
+		set {_grow_speed = value;}
+	}
+
 	float _size_h = 10.0f;
+	float _now_h = 0.0f;
 	public float SizeH {
 		get {return _size_h;}
-		set {_size_h = value; UpdateSize();}
+		set {_size_h = value; _now_h = 0.0f; UpdateSize();}
 	}
 
 	public float lifeTimeLimit = 10.0f;
@@ -30,15 +37,20 @@ public class LardCityParticle : MonoBehaviour {
 		GameObject _cube;
 		_cube = transform.FindChild ("Cube").gameObject;
 
-		_cube.transform.localScale = new Vector3 (_size_w, _size_h, _size_w);
-		_cube.transform.localPosition = new Vector3 (0, _size_h / 2.0f, 0);
+		_cube.transform.localScale = new Vector3 (_size_w, _now_h, _size_w);
+		_cube.transform.localPosition = new Vector3 (0, _now_h / 2.0f, 0);
 	}
 
 	void Update () {
 		_lifeTime += Time.deltaTime;
 		
 		gameObject.transform.Translate (new Vector3 (dx, dy, dz));
-		
+
+		if (_now_h < _size_h) {
+			_now_h += _grow_speed;
+		}
+		UpdateSize ();
+
 		if (_lifeTime > lifeTimeLimit) {
 			Destroy(gameObject, 0.5f);
 		}

@@ -1,10 +1,16 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using System.Collections;
 
 public class LardCityEmitter : MonoBehaviour {
 
 	public GameObject _prefab;
+
+	[SerializeField]
+	bool _enableEmit = false;
+	public bool EnableEmit {
+		get { return _enableEmit; }
+		set { _enableEmit = value; }
+	}
 
 	[Range(0.01f, 1.0f)]
 	public float _slideSpeed = 0.1f;
@@ -14,6 +20,8 @@ public class LardCityEmitter : MonoBehaviour {
 
 	[Range(1,30)]
 	public float _lifeTimeLimit = 10;
+
+	public float _growSpeed = 0.1f;
 
 	public float _minHeight = 7;
 	public float _maxHeight = 20;
@@ -27,7 +35,9 @@ public class LardCityEmitter : MonoBehaviour {
 	public int _quantizeUnit = 12;
 
 	void Update() {
-		emitLardCityCube();
+		if (_enableEmit) {
+			emitLardCityCube();
+		}
 	}
 		
 	void emitLardCityCube() {
@@ -52,5 +62,6 @@ public class LardCityEmitter : MonoBehaviour {
 		p.SizeW = Random.Range (_minWidth, _maxWidth);
 		p.SizeH = Random.Range (_minHeight, _maxHeight);
 		p.dx = -_slideSpeed;
+		p.GrowSpeed = _growSpeed;
 	}
 }
