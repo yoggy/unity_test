@@ -67,3 +67,5 @@ $RECYCLE.BIN/
 *.csproj
 *.sln
 *.userprefs
+
+.vs
