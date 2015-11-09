@@ -19,6 +19,7 @@ clickイベントの取り方
 2. メインカメラにPhysics Raycasterをアタッチする。
 
 3. IPointerClickHandlerを実装したクラスを作成。GameObjectにアタッチする。
+
     public class Click : MonoBehaviour, IPointerClickHandler
     {
         public CubeAnimation cube;
