@@ -1,24 +1,24 @@
 memo
 ====
 
-\¬
+æ§‹æˆ
 ----
 
-    Click‚Ü‚½‚Íƒ{ƒ^ƒ“ ¨ CubeController.Fire()   ¨ Cube1‚ÌAnimatorAnimator.SetTrigger("fire")
-                          «
-                         SphereController.Fire() ¨ Sphere‚ÌAnimator.SetTrigger("fire")
-                          «(1•bŒã)
-                         CubeController.Fire()   ¨ Cube2‚ÌAnimatorAnimator.SetTrigger("fire")
+    Clickã¾ãŸã¯ãƒœã‚¿ãƒ³ â†’ CubeController.Fire()   â†’ Cube1ã®AnimatorAnimator.SetTrigger("fire")
+                          â†“
+                         SphereController.Fire() â†’ Sphereã®Animator.SetTrigger("fire")
+                          â†“(1ç§’å¾Œ)
+                         CubeController.Fire()   â†’ Cube2ã®AnimatorAnimator.SetTrigger("fire")
 
 
-clickƒCƒxƒ“ƒg‚Ìæ‚è•û
+clickã‚¤ãƒ™ãƒ³ãƒˆã®å–ã‚Šæ–¹
 ----
-1. ƒV[ƒ“‚ÉEventSystem‚ğ’Ç‰Á‚·‚é
-  - GameObject ¨ UI ¨ Event System
+1. ã‚·ãƒ¼ãƒ³ã«EventSystemã‚’è¿½åŠ ã™ã‚‹
+  - GameObject â†’ UI â†’ Event System
 
-2. ƒƒCƒ“ƒJƒƒ‰‚ÉPhysics Raycaster‚ğƒAƒ^ƒbƒ`‚·‚éB
+2. ãƒ¡ã‚¤ãƒ³ã‚«ãƒ¡ãƒ©ã«Physics Raycasterã‚’ã‚¢ã‚¿ãƒƒãƒã™ã‚‹ã€‚
 
-3. IPointerClickHandler‚ğÀ‘•‚µ‚½ƒNƒ‰ƒX‚ğì¬BGameObject‚ÉƒAƒ^ƒbƒ`‚·‚éB
+3. IPointerClickHandlerã‚’å®Ÿè£…ã—ãŸã‚¯ãƒ©ã‚¹ã‚’ä½œæˆã€‚GameObjectã«ã‚¢ã‚¿ãƒƒãƒã™ã‚‹ã€‚
 
     public class Click : MonoBehaviour, IPointerClickHandler
     {
