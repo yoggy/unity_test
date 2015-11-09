@@ -20,14 +20,14 @@ clickイベントの取り方
 
 3. IPointerClickHandlerを実装したクラスを作成。GameObjectにアタッチする。
 
-    public class Click : MonoBehaviour, IPointerClickHandler
-    {
-        public CubeAnimation cube;
-    
-        public void OnPointerClick(PointerEventData eventData)
+        
+        public class Click : MonoBehaviour, IPointerClickHandler
         {
-            if (cube == null) return;
-            cube.Fire();
+            public CubeAnimation cube;
+        
+            public void OnPointerClick(PointerEventData eventData)
+            {
+                if (cube != null) cube.Fire();
+            }
         }
-    }
-
+        
