@@ -1,7 +1,7 @@
 test21_skybox - Cylindrical画像をCubemapに使うメモ
 ====
 
-[img01.png](img01.png)
+![img01.png](img01.png)
 
 テクスチャの設定
 - Assetにテクスチャを取り込む
