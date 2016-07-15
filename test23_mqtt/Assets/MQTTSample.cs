@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class MQTTSample : MonoBehaviour {
 
@@ -20,13 +21,13 @@ public class MQTTSample : MonoBehaviour {
 	}
 	
 	void Update () {
-        while (client.Count() > 0)
+        while (client.IsMessageArrived() == true)
         {
-            string message = client.Receive();
+            MQTTMessage msg = client.Receive();
 
-            Debug.Log("Receive : " + message);
+            Debug.Log("Receive : " + msg.ToString());
 
-            messages.Add(message);
+            messages.Add(msg.message);
             if (messages.Count > 12)
             {
                 messages.RemoveAt(0);

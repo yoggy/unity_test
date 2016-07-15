@@ -1,15 +1,30 @@
 ﻿using UnityEngine;
 using System;
+using System.Threading;
 using System.Collections;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 
 // see also... https://m2mqtt4unity.codeplex.com/documentation
 
+public class MQTTMessage
+{
+    public string topic;
+    public string message;
+
+    override public string ToString()
+    {
+        string str;
+        str = "{topic=" + topic + ", message=" + message + "}";
+        return str;
+    }
+}
+
 public class MQTTClient {
     private MqttClient4Unity client;
     private string clientId;
 
+    private Queue messageQueue = new Queue();
 
     public MQTTClient()
     {
@@ -46,6 +61,7 @@ public class MQTTClient {
             {
                 client.Connect(clientId);
             }
+            client.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
         }
         catch (Exception e)
         {
@@ -97,13 +113,40 @@ public class MQTTClient {
 
     public int Count()
     {
-        if (IsConnected == false) return 0;
-        return client.Count();
+        lock (messageQueue)
+        {
+            return messageQueue.Count;
+        }
     }
 
-    public string Receive()
+    void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
     {
-        string message = client.Receive();
-        return message;
+        Debug.Log(e.ToString());
+        lock (messageQueue)
+        {
+            MQTTMessage msg = new MQTTMessage();
+            msg.topic = e.Topic.ToString();
+            msg.message = System.Text.Encoding.UTF8.GetString(e.Message);
+            messageQueue.Enqueue(msg);
+        }
+    }
+
+    public bool IsMessageArrived()
+    {
+        lock (messageQueue)
+        {
+            if (messageQueue.Count == 0) return false;
+            return true;
+        }
+    }
+
+    public MQTTMessage Receive()
+    {
+        lock (messageQueue)
+        {
+            if (messageQueue.Count == 0) return null;
+            MQTTMessage msg = (MQTTMessage)messageQueue.Dequeue();
+            return msg;
+        }
     }
 }
