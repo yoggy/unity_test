@@ -1,5 +1,9 @@
 test29_MousePosition
 ====
+マウスカーソルの位置にgameObjectを移動させるサンプル。
+
+スクリーン座標系→ワールド座標の変換方法
+----
 マウスカーソルの位置はInput.mousePositionで取得可能。
 
   * [Unity - スクリプトリファレンス: Input.mousePosition](http://docs.unity3d.com/jp/current/ScriptReference/Input-mousePosition.html)
