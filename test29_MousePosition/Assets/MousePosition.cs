@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 
-public class MousePosition : MonoBehaviour {
+public class MousePosition : MonoBehaviour
+{
 
-    void Start () {	
-	}
-	
-	void Update () {
+    void Start()
+    {
+    }
+
+    void Update()
+    {
         if (Input.GetMouseButton(0))
         {
             gameObject.GetComponent<MeshRenderer>().enabled = true;
