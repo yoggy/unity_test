@@ -1,0 +1,51 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "25.0.0"
+
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    testCompile 'junit:junit:4.12'
+
+    // ======== Unityのクラスをビルドするために、ここから追加 ========
+    compile files('C:/Program Files/Unity/Editor/Data/PlaybackEngines/AndroidPlayer/Variations/il2cpp/Release/Classes/classes.jar')
+    // ======== Unityのクラスをビルドするために、ここまで追加 ========
+}
+
+// ======== jarファイル出力のため、ここから追加 ========
+// タスクmakeJar-(release|debug)が追加される
+// タスクを実行するとlibtestservice\build\libs\以下にjarファイルが作成される
+// タスクの実行は、メニューのView→TaskWindows→Gradleを選択して開くGradle Projectsウインドウから実行すること
+// 参考  : http://stackoverflow.com/questions/16763090/how-to-export-library-to-jar-in-android-studio
+android.libraryVariants.all { variant ->
+    task("makeJar-${variant.name}", type: Jar) {
+        description "Bundles compiled .class files into a JAR file for $variant.name."
+        dependsOn variant.javaCompile
+        from variant.javaCompile.destinationDir
+        exclude '**/R.class', '**/R$*.class', '**/R.html', '**/R.*.html'
+    }
+}
+// ======== jarファイル出力のため、ここまで追加 ========
+
