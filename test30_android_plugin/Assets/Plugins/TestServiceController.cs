@@ -12,6 +12,8 @@ public class TestServiceController : MonoBehaviour {
 			this.controller = new TestServiceControllerForAndroid();
 		}
 	}
+	#elif UNITY_EDITOR
+	// UnityEditor上での実行
 	#endif
 
 	public void SetListener(string target_obj, string target_method) {
@@ -63,5 +65,9 @@ public class TestServiceController : MonoBehaviour {
 		controller.Stop();
 		#else
 		#endif
+	}
+
+	void Update() {
+		TestMethod2 ();
 	}
 }

@@ -47,5 +47,11 @@ android.libraryVariants.all { variant ->
         exclude '**/R.class', '**/R$*.class', '**/R.html', '**/R.*.html'
     }
 }
+
+// 作成したJarファイルをAssets/Plugins/Android/ディレクトリへデプロイする
+task deployJar(type: Exec, dependsOn: "makeJar-release") {
+    commandLine 'ruby', 'deploy_jar.rb'
+}
+
 // ======== jarファイル出力のため、ここまで追加 ========
 

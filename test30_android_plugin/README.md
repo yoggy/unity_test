@@ -201,6 +201,7 @@ Androidアプリをビルドする際に、デフォルトで使用されるAndr
 ビルドの際に、出力タイプをGradleに設定して"Export Project"を選択しておくと、ビルド時に使用されるファイル一式が出力されるので、この中に含まれるAndroidManifest.xmlをチェックする。
 
 ただし、Unityが自動生成するAndroidManifest.xmlには罠がある。
+
 この内容をまるごとコピーしてAndroidManifest.xmlを独自に作ると、アプリ起動時にActivityが見つからないというエラーが出力され、アプリが落ちるようになる。
 
 これを回避するためには、<activity>タグのandroid:nameプロパティの内容を

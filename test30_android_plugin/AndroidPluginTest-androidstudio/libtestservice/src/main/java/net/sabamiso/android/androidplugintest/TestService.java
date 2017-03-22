@@ -65,12 +65,12 @@ public class TestService extends Service {
         @Override
         public void run() {
             onTimer();
-            h.postDelayed(timer_task, 1000);
+            h.postDelayed(timer_task, 10);
         }
     };
 
     protected void onTimer() {
-        long epoch =  System.currentTimeMillis() / 1000;
+        long epoch =  System.currentTimeMillis();
         String msg = "onTimer() : " + epoch;
 
         if (listener != null) {

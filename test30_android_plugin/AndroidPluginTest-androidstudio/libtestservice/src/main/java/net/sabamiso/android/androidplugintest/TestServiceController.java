@@ -19,6 +19,9 @@ public class TestServiceController implements TestServiceListener {
 
     protected TestServiceListener listener;
 
+    public TestServiceController() {
+    }
+
     Activity getActivity() {
         if (this.current_activity == null) {
             return UnityPlayer.currentActivity;

@@ -8,9 +8,9 @@ public class TestServiceControllerForAndroid {
 	bool is_init = false;
 
 	public void Check() {
+		AndroidJNI.AttachCurrentThread();
 		if (is_init == false) {
 			controller = new AndroidJavaObject("net.sabamiso.android.androidplugintest.TestServiceController");
-			AndroidJNI.AttachCurrentThread();
 			is_init = true;
 		}
 	}
