@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
 public class TestServiceControllerForAndroid {
 	AndroidJavaObject controller;
 	bool is_init = false;

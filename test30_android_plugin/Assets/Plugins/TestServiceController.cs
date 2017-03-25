@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TestServiceController : MonoBehaviour {	
-	#if UNITY_ANDROID
+	#if UNITY_ANDROID && !UNITY_EDITOR
 	// Androidで実行する際、コンストラクタ・デストラクタは使わないようにする
 	TestServiceControllerForAndroid controller;
 
@@ -18,14 +18,14 @@ public class TestServiceController : MonoBehaviour {
 
 	public void SetListener(string target_obj, string target_method) {
 		Debug.Log ("setListener() : target_obj=" + target_obj + ", target_method=" + target_method);
-		#if UNITY_ANDROID
+		#if UNITY_ANDROID && !UNITY_EDITOR
 		Check();
 		controller.SetListener(target_obj, target_method);
 		#endif
 	}
 
 	public void OnDestroy() {
-		#if UNITY_ANDROID
+		#if UNITY_ANDROID && !UNITY_EDITOR
 		if (controller != null) {
 			controller.Dispose();
 		}
@@ -34,7 +34,7 @@ public class TestServiceController : MonoBehaviour {
 
 	public void TestMethod1() {
 		Debug.Log ("testMethod1()");
-		#if UNITY_ANDROID
+		#if UNITY_ANDROID && !UNITY_EDITOR
 		Check();
 		controller.TestMethod1();
 		#endif
@@ -42,7 +42,7 @@ public class TestServiceController : MonoBehaviour {
 
 	public void TestMethod2() {
 		Debug.Log ("testMethod2()");
-		#if UNITY_ANDROID
+		#if UNITY_ANDROID && !UNITY_EDITOR
 		Check();
 		controller.TestMethod2();
 		#else
@@ -51,7 +51,7 @@ public class TestServiceController : MonoBehaviour {
 
 	public void Start() {
 		Debug.Log ("start()");
-		#if UNITY_ANDROID
+		#if UNITY_ANDROID && !UNITY_EDITOR
 		Check();
 		controller.Start();
 		#else
@@ -60,7 +60,7 @@ public class TestServiceController : MonoBehaviour {
 
 	public void Stop() {
 		Debug.Log ("stop()");
-		#if UNITY_ANDROID
+		#if UNITY_ANDROID && !UNITY_EDITOR
 		Check();
 		controller.Stop();
 		#else
