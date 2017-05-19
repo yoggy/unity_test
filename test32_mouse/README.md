@@ -15,3 +15,6 @@ GameObjectの位置に反映する場合は、スクリーン座標系からワ�
         
         gameObject.transform.position = pos_world;
     }
+
+
+![img01.gif](img01.gif)
