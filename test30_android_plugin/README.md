@@ -116,6 +116,9 @@ Unity
 
 Android SDK向けセットアップ
 ----
+追記(2017/5/30)
+  - この問題はUnity 5.6.1f1で修正済(888859)。Android Studioを使ってインストールしたNDKのパスを指定すれば大丈夫。
+  - 以下、古いバージョンを使うときの情報
 
 あらかじめAndroid StudioとJREをインストールしておく。
 
@@ -129,11 +132,12 @@ UnityのメニューからEdit→Preference→External Toolsを開き、Android 
   * unity3d - not finding android sdk (Unity) - Stack Overflow
     * http://stackoverflow.com/questions/42538433/not-finding-android-sdk-unity
 
-追記(2017/5/30)
-  - この問題はUnity 5.6.1f1で修正済(888859)。Android Studioを使ってインストールしたNDKのパスを指定すれば大丈夫。
 
 apkをビルドしようとしたときにエラーが出たときは…
 ----
+追記(2017/5/30)
+  - この問題はUnity 5.6.1f1で修正済(888859)
+  - 以下、古いバージョンを使うときの情報
 
 参考
   * unity3d - not finding android sdk (Unity) - Stack Overflow
@@ -154,8 +158,6 @@ C:\local\android-sdkディレクトリにあるtoolsディレクトリを↓と�
 
  http://dl-ssl.google.com/android/repository/tools_r25.2.5-windows.zip
 
-追記(2017/5/30)
-  - この問題はUnity 5.6.1f1で修正済(888859)
 
 Unity(C#)からAndroid側のJavaのコードを呼び出す
 ----
