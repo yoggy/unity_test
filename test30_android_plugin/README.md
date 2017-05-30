@@ -119,7 +119,7 @@ Android SDK向けセットアップ
 
 あらかじめAndroid StudioとJREをインストールしておく。
 
-2017/3/19現在、Android SDKでインストールされるNDKは新しすぎてUnity 5.5.2f1では対応していないので、android-ndk-r10eをC:\local\android-ndk-r10eにインストールする。
+2017/3/19現在、Android StudioでインストールされるNDKは新しすぎてUnity 5.5.2f1では対応していないので、android-ndk-r10eをC:\local\android-ndk-r10eにインストールする。
 
   * https://developer.android.com/ndk/downloads/older_releases.html
 
@@ -128,6 +128,9 @@ UnityのメニューからEdit→Preference→External Toolsを開き、Android 
 参考
   * unity3d - not finding android sdk (Unity) - Stack Overflow
     * http://stackoverflow.com/questions/42538433/not-finding-android-sdk-unity
+
+追記(2017/5/30)
+  - この問題はUnity 5.6.1f1で修正済(888859)。Android Studioを使ってインストールしたNDKのパスを指定すれば大丈夫。
 
 apkをビルドしようとしたときにエラーが出たときは…
 ----
@@ -151,6 +154,8 @@ C:\local\android-sdkディレクトリにあるtoolsディレクトリを↓と�
 
  http://dl-ssl.google.com/android/repository/tools_r25.2.5-windows.zip
 
+追記(2017/5/30)
+  - この問題はUnity 5.6.1f1で修正済(888859)
 
 Unity(C#)からAndroid側のJavaのコードを呼び出す
 ----
@@ -172,7 +177,8 @@ uGUIのサイズが妙に小さくなる
 
 CanvasにattachされているCanvas Scalerの設定を"Scale With Screen Size"に変更しておく。
 
-=== スマホを一定時間さわっていなくてもSleepしないようにする
+スマホを一定時間さわっていなくてもSleepしないようにする
+----
 参考
 
   * https://docs.unity3d.com/ScriptReference/Screen-sleepTimeout.html
