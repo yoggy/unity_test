@@ -17,6 +17,8 @@ public class Script : MonoBehaviour, IAccelerometerEvent
     [SerializeField]
     Camera MainCamera;
 
+    double x, y, z;
+
     AndroidJavaObject accelerometer;
     AccelerometerEventListener event_listener;
 
@@ -100,7 +102,13 @@ public class Script : MonoBehaviour, IAccelerometerEvent
     public void OnAccelerometer(double x, double y, double z)
     {
         //Debug.Log(string.Format("{0}, {1}, {2}", x, y, z));
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
 
+    void Update()
+    {
         TextX.text = string.Format("{0:f2}", x);
         TextY.text = string.Format("{0:f2}", y);
         TextZ.text = string.Format("{0:f2}", z);
