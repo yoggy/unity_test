@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+
+    package="net.sabamiso.android.test34_android_aar_module">
+
+    <application android:allowBackup="true" android:label="@string/app_name"
+        android:supportsRtl="true">
+
+    </application>
+
+</manifest>
