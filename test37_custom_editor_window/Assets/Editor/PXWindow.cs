@@ -6,17 +6,16 @@ using System.Collections;
 public class PXWindow : EditorWindow
 {
     [MenuItem("PXWindow/PXWindow test")]
-
     public static void ShowWindow()
     {
         EditorWindow.GetWindow(typeof(PXWindow));
-
-        loadTextures();
     }
 
-    static Texture [] textures = new Texture[16];
+    bool is_initialized;
+    static int angle;
+    Texture[] textures = new Texture[16];
 
-    static void loadTextures()
+    void loadTextures()
     {
         for (int i = 0; i < textures.Length; ++i)
         {
@@ -30,10 +29,20 @@ public class PXWindow : EditorWindow
         }
     }
 
-    static int angle;
+
+    void CheckInitialize()
+    {
+        if (is_initialized == false)
+        {
+            loadTextures();
+            is_initialized = true;
+        }
+    }
 
     void OnGUI()
     {
+        CheckInitialize();
+
         GUILayout.Label("rotate");
 
         EditorGUI.indentLevel++;
