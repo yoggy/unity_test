@@ -15,6 +15,7 @@ public class Points : MonoBehaviour {
         List<Vector3> v = new List<Vector3>();
         for (int i = 0; i < 10000; ++i) {
             float x = Random.Range(-w, w) * Random.Range(-w, w);
+            float y = Random.Range(-w, w) * Random.Range(-w, w);
             float z = Random.Range(-w, w) * Random.Range(-w, w);
             v.Add(new Vector3(x, y, z));
         }
