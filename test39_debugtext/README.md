@@ -1,4 +1,4 @@
-test38_debugtext
+test39_debugtext
 ====
 Sceneビュー内に文字を描画するサンプル
 
