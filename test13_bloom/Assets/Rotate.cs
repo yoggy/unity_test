@@ -3,11 +3,20 @@ using System.Collections;
 
 public class Rotate : MonoBehaviour {
 
+    [SerializeField]
+    float rx;
+
+    [SerializeField]
+    float ry;
+
+    [SerializeField]
+    float rz;
+
 	void Start () {
 	
 	}
 	
 	void Update () {
-		transform.Rotate (1, 2, 3);
+		transform.Rotate (rx, ry, rz);
 	}
 }
