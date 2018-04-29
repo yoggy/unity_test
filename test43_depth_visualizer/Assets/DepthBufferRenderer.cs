@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class DepthBufferRenderer : MonoBehaviour {
 
-    private RenderTexture texture_rgb;
-    private RenderTexture texture_depth;
-
     [SerializeField]
     Material material;
 
