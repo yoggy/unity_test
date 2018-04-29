@@ -1,4 +1,4 @@
-test40_depth_visualizer
+test43_depth_visualizer
 ====
 
 デプスバッファを描画するテスト。手前を白く、奥を暗く
