@@ -7,7 +7,7 @@ Shader "test/OutlineShader"
 	{
 		_MainTex("MainTex", 2D) = "" {}
 		_DepthThreshould("depth threshould", Range(0.0, 0.5)) = 0.05
-		_SamplingRange("sampling range", Range(0.001, 0.1)) = 0.003
+		_SamplingScale("sampling scale", Range(0.5, 10)) = 3  // px
 		_OutlineColor("outline color", Color) = (1, 0, 0, 1)
 	}
 
@@ -26,9 +26,9 @@ Shader "test/OutlineShader"
 
 			sampler2D _MainTex;
 			sampler2D _CameraDepthTexture;
-			float4 _MainTex_TexelSize;
+			float4 _CameraDepthTexture_TexelSize; // see also... https://answers.unity.com/questions/678193/is-it-possible-to-access-the-dimensions-of-a-textu.html
 			float _DepthThreshould;
-			float _SamplingRange;
+			float _SamplingScale;
 			float4 _OutlineColor;
 
 			struct appdata_t {
@@ -48,7 +48,7 @@ Shader "test/OutlineShader"
 				o.uv = MultiplyUV(UNITY_MATRIX_TEXTURE0, v.uv);
 
 #if UNITY_UV_STARTS_AT_TOP
-				if (_MainTex_TexelSize.y < 0)
+				if (_CameraDepthTexture_TexelSize.y < 0)
 					o.uv.y = 1 - o.uv.y;
 #endif
 				return o;
@@ -60,9 +60,12 @@ Shader "test/OutlineShader"
 
 			float4 frag(v2f i) : COLOR {
 				// sobel filter
+
+				float w = _CameraDepthTexture_TexelSize.x * _SamplingScale;
+
 				float d0 = sample_depth(i.uv);
-				float d1 = sample_depth(i.uv + float2(_SamplingRange, 0));
-				float d2 = sample_depth(i.uv + float2(0, _SamplingRange));
+				float d1 = sample_depth(i.uv + float2(w, 0));
+				float d2 = sample_depth(i.uv + float2(0, w));
 				float d = abs(d0 - d1) + abs(d0 - d2);
 
 				float4 c = tex2D(_MainTex, i.uv);
