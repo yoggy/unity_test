@@ -1,14 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Points : MonoBehaviour {
-
-    [SerializeField]
-    Material material;
+public class PointCloud : MonoBehaviour {
 
     void Start () 
     {
         Mesh mesh = new Mesh();
+        mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
 
         float w = 1.0f;
 
@@ -30,8 +28,5 @@ public class Points : MonoBehaviour {
 
         MeshFilter mesh_filter = gameObject.GetComponent<MeshFilter>();
         mesh_filter.sharedMesh = mesh;
-
-        MeshRenderer mesh_renderer = gameObject.GetComponent<MeshRenderer>();
-        mesh_renderer.material = this.material;
     }
 }
