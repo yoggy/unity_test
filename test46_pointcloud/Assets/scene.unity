@@ -271,6 +271,7 @@ GameObject:
   - component: {fileID: 1964876348}
   - component: {fileID: 1964876351}
   - component: {fileID: 1964876352}
+  - component: {fileID: 1964876353}
   m_Layer: 0
   m_Name: PointCloud
   m_TagString: Untagged
@@ -353,5 +354,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38788a239d32ed248aa3279cc1adc72d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1964876353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1964876347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8efe70b1a84779438005008c1eb1132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
