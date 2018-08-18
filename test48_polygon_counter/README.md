@@ -1,6 +1,6 @@
 # test48_polygon_counter
 
-![img01.gif]](img01.gif)
+![img01.gif](img01.gif)
 
     static long GetTotalPolygonCount()
     {
