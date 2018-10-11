@@ -6,7 +6,7 @@ Androidのリアカメラを使ってキャプチャした画像をTexture2Dと�
 ## 注意点
 このサンプルをビルドする場合は、Player Settings → Other Settings → Rendering → Multithreaded Rendering をOFFに設定すること。
 
-  - ![img02.gif](img02.gif)
+  - ![img02.png](img02.png)
 
 ここをONに設定しているとスクリプトを実行するスレッドと、描画を行うスレッドが別になる。
 スクリプトを実行するスレッド上にはOpenGL ESのコンテキストがないため、スクリプトのスレッド上でGLES20.glGenTexture()を実行してもテクスチャが生成されない…
