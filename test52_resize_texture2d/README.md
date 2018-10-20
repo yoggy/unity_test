@@ -1,4 +1,4 @@
-test51_resized_texture
+test52_resize_texture2d
 ====
 
 ![img01.gif](img01.gif)
