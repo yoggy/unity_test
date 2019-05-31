@@ -10,11 +10,11 @@ public class Line : MonoBehaviour {
 
     LineRenderer lineRenderer;
 
-	void Start () {
+    void Start () {
         lineRenderer = gameObject.GetComponent<LineRenderer>();
-	}
-	
-	void Update () {
+    }
+    
+    void Update () {
         if (lineRenderer == null) return;
         if (fromGameObject == null) return;
         if (toGameObject == null) return;
