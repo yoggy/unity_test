@@ -22,7 +22,8 @@ using UnityEngine.Events;
 [System.Serializable]
 public class OnLoggingEvent : UnityEvent<string, string> { }
 
-public class TinyHTTPServerForUnity : MonoBehaviour
+[DisallowMultipleComponent]
+public class TinyHTTPServerForUnity : SingletonMonoBehaviour<TinyHTTPServerForUnity>
 {
     public int port = 10080;
     public OnLoggingEvent on_logging_event = new OnLoggingEvent();
@@ -35,7 +36,7 @@ public class TinyHTTPServerForUnity : MonoBehaviour
         http_listener = new HttpListener();
         http_listener.Prefixes.Add("http://*:" + port + "/");
         http_listener.Start();
-        ProcessRequestMainLoop();
+        Listen();
         Debug.Log("HttpListener.Start()");
     }
 
@@ -46,7 +47,7 @@ public class TinyHTTPServerForUnity : MonoBehaviour
         Debug.Log("HttpListener.Stop()");
     }
 
-    public async Task ProcessRequestMainLoop()
+    public async Task Listen()
     {
         while (loop_flag)
         {
@@ -120,7 +121,6 @@ public class TinyHTTPServerForUnity : MonoBehaviour
     {
         res.StatusCode = (int)HttpStatusCode.OK;
         var ext = Path.GetExtension(local_path).ToLower();
-        Debug.Log("ext=" + ext);
         if (content_type_dict.ContainsKey(ext))
         {
             res.ContentType = content_type_dict[ext];

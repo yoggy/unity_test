@@ -12,7 +12,6 @@
 </head>
 
 <body>
-
     <nav class="navbar navbar-dark bg-dark">
         <a href=" #" class="navbar-brand">test57_httpserver</a>
     </nav>
@@ -22,10 +21,22 @@
         <p class="lead">This tiny website is built with bootstrap-4.3.1.</p>
     </div>
 
-    <figure class="figure">
-        <img src="img01.png" class="figure-img img-fluid" alt="img01.png">
-        <figcaption class="figure-caption">img01.png</figcaption>
-    </figure>
+    <div class="row">
+        <div class="col-6">
+            <figure class="figure">
+                <img src="img01.png" class="figure-img img-fluid" alt="img01.png">
+                <figcaption class="figure-caption">img01.png</figcaption>
+            </figure>
+        </div>
+        <div class="col-1">
+            <button id="button_test" type="button" class="btn btn-primary">button_test</button>
+        </div>
+
+        <div class="col-4">
+            <pre id="text_message"></pre>
+        </div>
+    </div>
+    <script src="./test.js"></script>
 </body>
 
 </html>

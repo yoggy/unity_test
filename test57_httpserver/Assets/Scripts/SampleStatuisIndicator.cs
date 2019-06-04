@@ -28,7 +28,9 @@ public class LogEntry
 
 public class SampleStatuisIndicator : MonoBehaviour
 {
+    public LocalIpAddress4 local_ip_address4;
     public TinyHTTPServerForUnity http_server;
+    public Text text_ip;
     public Text text_port;
     public Text text_message;
 
@@ -42,6 +44,7 @@ public class SampleStatuisIndicator : MonoBehaviour
 
     void Update()
     {
+        text_ip.text = local_ip_address4.ip_address;
         CheckExpire();
     }
 
