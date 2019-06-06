@@ -59,9 +59,46 @@ public class TinyHTTPServerForUnity : SingletonMonoBehaviour<TinyHTTPServerForUn
 
             var req = context.Request;
             var res = context.Response;
+#if UNITY_ANDROID || !UNITY_EDITOR
+            ProcessRequestForAndroid(req, res);
+#else
             ProcessRequest(req, res);
+#endif
         }
     }
+
+    public void ProcessRequestForAndroid(HttpListenerRequest req, HttpListenerResponse res)
+    {
+        try
+        {
+            var url = Application.streamingAssetsPath + req.RawUrl;
+            if (url.LastIndexOf("/") == url.Length - 1)
+            {
+                url += "index.html";
+            }
+
+            using (var www = new WWW(url))
+            {
+                while (!www.isDone)
+                {
+                }
+
+                if (string.IsNullOrEmpty(www.error))
+                {
+                    Reply200OKForAndroid(req, res, www);
+                    return;
+                }
+            }
+
+        }
+        catch (Exception e)
+        {
+            Reply500InternalServerError(req, res, e);
+        }
+
+        Reply404NotFound(req, res);
+    }
+
 
     public void ProcessRequest(HttpListenerRequest req, HttpListenerResponse res)
     {
@@ -139,6 +176,24 @@ public class TinyHTTPServerForUnity : SingletonMonoBehaviour<TinyHTTPServerForUn
             os.Write(buf, 0, read_size);
             os.Close();
         }
+    }
+
+    void Reply200OKForAndroid(HttpListenerRequest req, HttpListenerResponse res, WWW www)
+    {
+        res.StatusCode = (int)HttpStatusCode.OK;
+        var ext = Path.GetExtension(www.url).ToLower();
+        if (content_type_dict.ContainsKey(ext))
+        {
+            res.ContentType = content_type_dict[ext];
+        }
+        else
+        {
+            res.ContentType = "application/octet-stream";
+        }
+
+        var os = res.OutputStream;
+        os.Write(www.bytes, 0, www.bytes.Length);
+        os.Close();
     }
 
     void Reply404NotFound(HttpListenerRequest req, HttpListenerResponse res)
