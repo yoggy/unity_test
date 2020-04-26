@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edb13c09916e0d742bfe29b82a3145d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assetbundle_download_url: 
+  assetbundle_download_url: https://github.com/yoggy/unity_test/raw/master/test64_assetbundles/AssetBundles/StandaloneWindows/rotatecube
   load_asset_path: RotateCube
 --- !u!1 &1139361264
 GameObject:
