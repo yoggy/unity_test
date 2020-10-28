@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 823bc72e1889cdd41a6546429d995114, type: 3}
+  m_Name: commands
+  m_EditorClassIdentifier: 
+  command_list:
+  - command: load_object
+    str_0: prefab_name_1
+    str_1: object_name_1
+    str_2: 
+    num_0: 1
+    num_1: 2
+    num_2: 3
+    bool_0: 0
+    text: 
+    comment: 
+  - command: load_object
+    str_0: prefab_name_2
+    str_1: object_name_2
+    str_2: 
+    num_0: 2
+    num_1: 3
+    num_2: 4
+    bool_0: 0
+    text: 
+    comment: 
+  - command: wait
+    str_0: 
+    str_1: 
+    str_2: 
+    num_0: 1
+    num_1: 0
+    num_2: 0
+    bool_0: 0
+    text: 
+    comment: 
+  - command: enable_object
+    str_0: object_name_1
+    str_1: 
+    str_2: 
+    num_0: 0
+    num_1: 0
+    num_2: 0
+    bool_0: 1
+    text: 
+    comment: 
+  - command: play_animation
+    str_0: object_name_1
+    str_1: walk
+    str_2: 
+    num_0: 0
+    num_1: 0
+    num_2: 0
+    bool_0: 0
+    text: 
+    comment: 
+  - command: wait
+    str_0: 
+    str_1: 
+    str_2: 
+    num_0: 2
+    num_1: 0
+    num_2: 0
+    bool_0: 0
+    text: 
+    comment: 
+  - command: enable
+    str_0: object_name_2
+    str_1: 
+    str_2: 
+    num_0: 0
+    num_1: 0
+    num_2: 0
+    bool_0: 1
+    text: 
+    comment: 
+  - command: play_animation
+    str_0: object_name_2
+    str_1: walk
+    str_2: 
+    num_0: 0
+    num_1: 0
+    num_2: 0
+    bool_0: 0
+    text: 
+    comment: 
+  - command: wait
+    str_0: 
+    str_1: 
+    str_2: 
+    num_0: 3
+    num_1: 0
+    num_2: 0
+    bool_0: 0
+    text: 
+    comment: 
+  - command: end
+    str_0: 
+    str_1: 
+    str_2: 
+    num_0: 0
+    num_1: 0
+    num_2: 0
+    bool_0: 0
+    text: 
+    comment: 
