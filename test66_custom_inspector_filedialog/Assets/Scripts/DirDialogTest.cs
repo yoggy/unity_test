@@ -14,7 +14,7 @@ public class DirDialogTest : MonoBehaviour
     {
         public override void OnInspectorGUI()
         {
-            var parent = target as DirDialogTest;
+            serializedObject.Update();
 
             GUIStyle bold_style = new GUIStyle()
             {
@@ -23,26 +23,29 @@ public class DirDialogTest : MonoBehaviour
             };
             EditorGUILayout.LabelField("DirDialogTest", bold_style);
 
-            EditorGUILayout.BeginVertical(GUI.skin.box);
+            // for dirPath
+            var dirPathProp = serializedObject.FindProperty("dirPath");
+            string dirPath = dirPathProp.stringValue;
+
+            EditorGUI.indentLevel++;
+            EditorGUILayout.BeginHorizontal();
+            dirPath = EditorGUILayout.TextField("dirPath", dirPath);
+            if (GUILayout.Button("...", GUILayout.Width(30)))
             {
-                EditorGUI.indentLevel++;
-                EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.TextField("dirPath", parent.dirPath);
-                if (GUILayout.Button("...", GUILayout.Width(30)))
+                // see also... https://docs.unity3d.com/ja/current/ScriptReference/EditorUtility.OpenFolderPanel.html
+                string path = EditorUtility.OpenFolderPanel("dir dialog test", "", "*");
+
+                if (path.Length > 0)
                 {
-                    // see also... https://docs.unity3d.com/ja/current/ScriptReference/EditorUtility.OpenFolderPanel.html
-                    string path = EditorUtility.OpenFolderPanel("dir dialog test", "", "*");
-
-                    if (path.Length > 0)
-                    {
-                        parent.dirPath = path;
-                    }
+                    dirPath = path;
                 }
-                EditorGUILayout.EndHorizontal();
-                EditorGUI.indentLevel--;
-
             }
-            EditorGUILayout.EndVertical();
+            dirPathProp.stringValue = dirPath;
+
+            EditorGUILayout.EndHorizontal();
+            EditorGUI.indentLevel--;
+
+            serializedObject.ApplyModifiedProperties();
         }
     }
 #endif

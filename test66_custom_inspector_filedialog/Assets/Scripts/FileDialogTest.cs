@@ -14,7 +14,7 @@ public class FileDialogTest : MonoBehaviour
     {
         public override void OnInspectorGUI()
         {
-            var parent = target as FileDialogTest;
+            serializedObject.Update();
 
             GUIStyle bold_style = new GUIStyle()
             {
@@ -23,26 +23,30 @@ public class FileDialogTest : MonoBehaviour
             };
             EditorGUILayout.LabelField("FileDialogTest", bold_style);
 
-            EditorGUILayout.BeginVertical(GUI.skin.box);
+            EditorGUI.indentLevel++;
+
+            // for filePath
+            var filePathProp = serializedObject.FindProperty("filePath");
+            string filePath = filePathProp.stringValue;
+
+            EditorGUILayout.BeginHorizontal();
+            filePath = EditorGUILayout.TextField("filePath", filePath);
+            if (GUILayout.Button("...", GUILayout.Width(30)))
             {
-                EditorGUI.indentLevel++;
-                EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.TextField("filePath", parent.filePath);
-                if (GUILayout.Button("...", GUILayout.Width(30)))
+                // see also... https://docs.unity3d.com/ja/current/ScriptReference/EditorUtility.OpenFilePanel.html
+                string path = EditorUtility.OpenFilePanel("file dialog test", "", "*");
+
+                if (path.Length > 0)
                 {
-                    // see also... https://docs.unity3d.com/ja/current/ScriptReference/EditorUtility.OpenFilePanel.html
-                    string path = EditorUtility.OpenFilePanel("file dialog test", "", "*");
-
-                    if (path.Length > 0)
-                    {
-                        parent.filePath = path;
-                    }
+                    filePath = path;
                 }
-                EditorGUILayout.EndHorizontal();
-                EditorGUI.indentLevel--;
-
             }
-            EditorGUILayout.EndVertical();
+            EditorGUILayout.EndHorizontal();
+            EditorGUI.indentLevel--;
+
+            filePathProp.stringValue = filePath;
+
+            serializedObject.ApplyModifiedProperties();
         }
     }
 #endif
