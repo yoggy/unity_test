@@ -73,5 +73,4 @@ $RECYCLE.BIN/
 .vsconfig
 Logs
 
-test69_load_json/UserSettings/EditorUserSettings.asset
-test70_caliper/UserSettings/EditorUserSettings.asset
+UserSettings
