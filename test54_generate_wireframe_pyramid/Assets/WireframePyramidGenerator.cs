@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[ExecuteInEditMode]
+[ExecuteAlways]
+[RequireComponent(typeof(MeshFilter))]
+[RequireComponent(typeof(MeshRenderer))]
 public class WireframePyramidGenerator : MonoBehaviour {
-
-    static GameObject target_obj;
 
     static WireframePyramidGenerator()
     {
-        SceneView.onSceneGUIDelegate += OnSceneGUI;
+        SceneView.duringSceneGui += OnSceneGUI;
+    }
+
+    static WireframePyramidGenerator GetInstance()
+    {
+        return (WireframePyramidGenerator)GameObject.FindObjectOfType(typeof(WireframePyramidGenerator));
     }
 
     static void OnSceneGUI(SceneView sceneView)
@@ -18,15 +23,9 @@ public class WireframePyramidGenerator : MonoBehaviour {
         Handles.BeginGUI();
         if( GUI.Button( new Rect(10, 10, 200, 50), "Generate Pyramid Wireframe") )
         {
-            WireframePyramidGenerator generator = target_obj.GetComponent<WireframePyramidGenerator>();
-            Debug.Log(generator);
-            generator.GeneratePyramidWireframe();
+            GetInstance().GeneratePyramidWireframe();
         }
         Handles.EndGUI();
-    }
-
-    void Awake() {
-        target_obj = this.gameObject;
     }
 
     public void GeneratePyramidWireframe()
@@ -60,10 +59,14 @@ public class WireframePyramidGenerator : MonoBehaviour {
         mf.sharedMesh = mesh;
 
         MeshRenderer mr = this.gameObject.GetComponent<MeshRenderer>();
+        if (mr.sharedMaterial == null)
+        {
+            mr.sharedMaterial = new Material(Shader.Find("Unlit/Color"));
+        }
         mr.sharedMaterial.color = new Color(1.0f, 1.0f, 1.0f);
 
         // save the mesh to Assets directory
-        AssetDatabase.CreateAsset(mesh, "Assets/pyramid_wireframe.asset");
+        AssetDatabase.CreateAsset(mesh, "Assets/wireframe_pyramid.asset");
         AssetDatabase.SaveAssets();
     }
 }
