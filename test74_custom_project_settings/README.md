@@ -12,7 +12,7 @@ public class CustomProjectSettings : ScriptableObject
     public int intValue;
     public string urlString;
 
-    public static SerializedObject GetInstance()
+    public static CustomProjectSettings GetInstance()
     {
         var path = "Assets/CustomProjectSettings.asset";
         var settings = AssetDatabase.LoadAssetAtPath<CustomProjectSettings>(path);
@@ -24,7 +24,12 @@ public class CustomProjectSettings : ScriptableObject
             AssetDatabase.SaveAssets();
         }
 
-        return new SerializedObject(settings);
+        return settings;
+    }
+
+    public static SerializedObject GetSerializedObject()
+    {
+        return new SerializedObject(GetInstance());
     }
 }
 

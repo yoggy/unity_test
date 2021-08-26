@@ -8,7 +8,7 @@ public class CustomProjectSettings : ScriptableObject
     public int intValue;
     public string urlString;
 
-    public static SerializedObject GetInstance()
+    public static CustomProjectSettings GetInstance()
     {
         var path = "Assets/CustomProjectSettings.asset";
         var settings = AssetDatabase.LoadAssetAtPath<CustomProjectSettings>(path);
@@ -20,7 +20,12 @@ public class CustomProjectSettings : ScriptableObject
             AssetDatabase.SaveAssets();
         }
 
-        return new SerializedObject(settings);
+        return settings;
+    }
+
+    public static SerializedObject GetSerializedObject()
+    {
+        return new SerializedObject(GetInstance());
     }
 }
 
@@ -42,11 +47,11 @@ public class CustomProjectSettingsProvider : SettingsProvider
 
     public override void OnGUI(string searchContext)
     {
-        var settings = CustomProjectSettings.GetInstance();
+        var serializedObject = CustomProjectSettings.GetSerializedObject();
 
-        EditorGUILayout.PropertyField(settings.FindProperty("intValue"));
-        EditorGUILayout.PropertyField(settings.FindProperty("urlString"));
-        settings.ApplyModifiedProperties();
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("intValue"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("urlString"));
+        serializedObject.ApplyModifiedProperties();
     }
 
     [SettingsProvider]
@@ -54,8 +59,8 @@ public class CustomProjectSettingsProvider : SettingsProvider
     {
         var path = "Project/Custom/CustomProjectSettings";
         var provider = new CustomProjectSettingsProvider(path, SettingsScope.Project);
-        var settings = CustomProjectSettings.GetInstance();
-        provider.keywords = GetSearchKeywordsFromSerializedObject(settings);
+        var serializedObject = CustomProjectSettings.GetSerializedObject();
+        provider.keywords = GetSearchKeywordsFromSerializedObject(serializedObject);
 
         return provider;
     }
