@@ -39,13 +39,23 @@ public class CustomProjectSettingsProvider : SettingsProvider
     {
     }
 
+    public override void OnActivate(string searchContext, VisualElement rootElement)
+    {
+        Debug.Log("OnActivate");
+    }
+
+    public override void OnDeactivate()
+    {
+        Debug.Log("OnDeactivate");
+    }
+
     public override void OnGUI(string searchContext)
     {
-        var settings = CustomProjectSettings.GetInstance();
+        var serializedObject = CustomProjectSettings.GetSerializedObject();
 
-        EditorGUILayout.PropertyField(settings.FindProperty("intValue"));
-        EditorGUILayout.PropertyField(settings.FindProperty("urlString"));
-        settings.ApplyModifiedProperties();
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("intValue"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("urlString"));
+        serializedObject.ApplyModifiedProperties();
     }
 
     [SettingsProvider]
@@ -53,8 +63,8 @@ public class CustomProjectSettingsProvider : SettingsProvider
     {
         var path = "Project/Custom/CustomProjectSettings";
         var provider = new CustomProjectSettingsProvider(path, SettingsScope.Project);
-        var settings = CustomProjectSettings.GetInstance();
-        provider.keywords = GetSearchKeywordsFromSerializedObject(settings);
+        var serializedObject = CustomProjectSettings.GetSerializedObject();
+        provider.keywords = GetSearchKeywordsFromSerializedObject(serializedObject);
 
         return provider;
     }
