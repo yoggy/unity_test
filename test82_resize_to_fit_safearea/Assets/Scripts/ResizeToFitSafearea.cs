@@ -2,7 +2,7 @@
 //  ResizeToFitSafearea.cs
 //  
 // github:
-//     https://github.com/yoggy/unity_test/test82_resize_to_fit_safearea/
+//     https://github.com/yoggy/unity_test/tree/master/test82_resize_to_fit_safearea
 //
 // license:
 //     Copyright (c) 2022 yoggy <yoggy0@gmail.com>
