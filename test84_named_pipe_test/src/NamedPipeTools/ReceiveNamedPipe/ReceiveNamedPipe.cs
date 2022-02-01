@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.IO.Pipes;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace ReceiveNamePipe
 {
@@ -45,8 +47,8 @@ namespace ReceiveNamePipe
             Console.WriteLine($"info: pipe.IsConnected == true");
 
             StreamReader sr = new StreamReader(pipe);
-            
-            while(true)
+
+            while (true)
             {
                 string message = sr.ReadLine();
                 if (!String.IsNullOrEmpty(message))

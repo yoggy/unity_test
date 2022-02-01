@@ -23,6 +23,8 @@ public class NamedPipeSampleController : MonoBehaviour
     {
         Debug.Log("OnClickLaunchClient()");
 
+        namedPipeReceiver.OpenPipe();
+
     }
 
     public void OnClickClear()
