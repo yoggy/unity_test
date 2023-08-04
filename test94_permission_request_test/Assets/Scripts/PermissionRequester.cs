@@ -1,3 +1,5 @@
+// https://github.com/yoggy/unity_test/blob/master/test94_permission_request_test/Assets/Scripts/PermissionRequester.cs
+
 using System.Collections;
 using System.Collections.Generic;
 
